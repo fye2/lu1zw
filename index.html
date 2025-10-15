@@ -1,0 +1,114 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>w_<</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="icon" href="images/ss.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+
+  <script>
+    function audioPlay() {
+      const audio = document.getElementById("audio");
+      audio.volume = 0.5;
+      audio.currentTime = 0;
+      audio.play();
+    }
+  </script>
+</head>
+<body>
+  <audio loop preload="auto" id="audio">
+    <source src="media/neww.mp3" type="audio/mpeg" />
+  </audio>
+
+  <input type="checkbox" autocomplete="off" id="overlay-toggle" />
+  <div class="overlay fullscreen">
+    <label for="overlay-toggle" onclick="audioPlay();">
+      <span class="overlay-text">trust the process</span>
+    </label>
+  </div>
+
+  <video autoplay loop muted>
+    <source src="media/neww.mp4" type="video/mp4" />
+    Seu navegador não suporta vídeo.
+  </video>
+
+  <div class="all">
+    <div
+      class="discord-profile"
+      data-tilt
+      data-tilt-max="8"
+      data-tilt-glare="true"
+      data-tilt-max-glare="0.3"
+    >
+      <img
+        id="discord-avatar"
+        class="profile-img"
+        src="images/rt.jpg"
+        alt="Avatar Customizado"
+      />
+      <div id="discord-name" class="nickr">rt</div>
+      <div class="badges">
+        <div class="badge" style="background-image: url('images/1895-subscriber-nitro-animated.gif');" data-tooltip="Assinante desde 23 de dez. de 2024"></div>
+        <div class="badge" style="background-image: url('images/booster.png');" data-tooltip="Impulsionando o servidor desde 13 de fev. de 2022"></div>
+        <div class="badge" style="background-image: url('images/quest.png');" data-tooltip="Completou uma Missão"></div>
+      </div>
+      <div class="bio">sc</div>
+      <div class="social-buttons">
+        <a href="https://www.youtube.com/@rtmta/videos" target="_blank" class="social-button"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@_rtffz" target="_blank" class="social-button"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/_rtffz" target="_blank" class="social-button"><i class="fab fa-instagram"></i></a>
+      </div>
+
+      <div class="discord-profile-small" style="margin-top: 55px; background: rgba(255, 255, 255, 0.027); border-radius: 12px; padding: 10px 20px; width: 635px; display: flex; align-items: center; justify-content: space-between; color: #fff; box-shadow: 0 0 15px rgba(255, 255, 255, 0.027); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(14px); margin-left: -45px; transition: transform 0.3s ease;">
+        <img
+          id="discord-avatar-small"
+          src=""
+          alt="Avatar Pequeno"
+          class="profile-img-small"
+          style="width: 65px; height: 65px; border-radius: 50%;"
+        />
+        <span id="discord-name-small" class="profile-name" style="font-size: 17px; font-weight: 600; flex: 1; margin-left: -440px;">henri</span>
+        <a href="https://discord.com/users/913214371948290099" target="_blank" class="profile-btn" style="background: rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 6px 14px; color: #fff; text-decoration: none; font-size: 14px; transition: 0.3s;">Profile</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    VanillaTilt.init(document.querySelectorAll(".discord-profile"), {
+      max: 10,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.3,
+    });
+
+    const userId = "913214371948290099";
+
+    async function fetchAvatar() {
+      try {
+        const res = await fetch("https://testeee-rtqe.onrender.com/api/user/" + userId);
+        const data = await res.json();
+
+        if (data.error) {
+          console.error("Erro ao carregar avatar");
+          document.getElementById("discord-avatar-small").src =
+            "https://cdn.discordapp.com/embed/avatars/0.png";
+          return;
+        }
+
+        const avatarURL = data.avatarURL || `https://cdn.discordapp.com/embed/avatars/0.png`;
+        document.getElementById("discord-avatar-small").src = avatarURL;
+      } catch (error) {
+        console.error("Erro ao buscar dados do usuário:", error);
+        document.getElementById("discord-avatar-small").src =
+          "https://cdn.discordapp.com/embed/avatars/0.png";
+      }
+    }
+
+    fetchAvatar();
+  </script>
+</body>
+</html>
+
+
